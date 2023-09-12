@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logistics Company</title>
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+
+  <!-- Tailwind & Daisy UI CDN link -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.4.0/dist/full.css" rel="stylesheet" type="text/css" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Customized Utilities -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "header": "#111111",
+            "body": "#585858",
+          },
+        },
+        fontFamily: {
+          'work-sans': ['Work Sans', 'sans-serif'],
+          'lato': ['Lato', 'sans-serif'],
+        },
+        container: {
+          center: true,
+        },
+      },
+    };
+  </script>
+
+  <!-- Google Fonts Work Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/d7b7563d24.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<!-- We provide standard as well as innovative supply chain solutions enabled by the secured transportation, infrastructure and leading edge technology. We have strong network through road and river for providing Transportation – Inland Shipping – Distribution-People Outsourcing – Warehousing Solutions. -->
+
+<body class="font-lato">
+  <main>
+    <header class="fixed w-full z-50" id="header"></header>
+    <section class="text-center py-20">
+      <fieldset
+        class="border border-gray-300 rounded-lg px-5 py-10 md:p-10 max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto bg-teal-50/50 grid grid grid-flow-row md:grid-cols-2 gap-5">
+        <legend class="font-bold text-2xl px-5 py-3 bg-cyan-50 border border-accent rounded-lg capitalize">shipping
+          quotes
+        </legend>
+        <div class="space-y-2">
+
+          <fieldset class="border border-gray-300 rounded-lg p-0">
+            <legend class="font-bold text-base px-5 py-1 border rounded-lg capitalize">For Weight & Distance</legend>
+            <!-- Get Product/s Weight -->
+            <div class="w-full md:w-60 lg:w-96 mx-auto my-5 flex items-center">
+              <div class="form-control w-full">
+                <label for="weight" class="label">
+                  <span class="label-text">Select Total Weight</span>
+                </label>
+                <input onblur="distanceCostToShow()" type="number" id="weight" min="0.1" max="40" value="1"
+                  class="flex-1 px-5 py-3 input input-accent" required />
+              </div>
+              <!-- <button id="setWeight" class="btn btn-accent rounded-s-none border-s-0 mt-[36px]" type="submit">set</button> -->
+            </div>
+
+            <!-- Get Pickup Location -->
+            <div class="w-full md:w-60 lg:w-96 mx-auto my-5 flex items-center">
+              <div class="form-control w-full">
+                <label for="distance" class="label">
+                  <span class="label-text">Select Location</span>
+                </label>
+                <select onblur="distanceCostToShow()" class="select select-bordered w-full select-accent"
+                  name="distance" id="distance"
+                  required>
+                  <option disabled selected value="DHA">Dhaka District</option>
+                  <option value="DHA">Dhaka District</option>
+                  <option value="SYL">Sylhet District</option>
+                  <option value="CHI">Chittagong District</option>
+                  <option value="KHU">Khulna District</option>
+                  <option value="BAR">Barishal District</option>
+                  <option value="RAJ">Rajshahi District</option>
+                  <option value="RAN">Rangpur District</option>
+                  <option value="MYM">Mymanshingh District</option>
+                </select>
+                <label class="label pt-4">
+                  <span class="label-text-alt"></span>
+                  <span class="label-text-alt">For these weight & distance <span id="TKForWeightDistance">50</span>TK
+                    <span></span> will be
+                    added to the cost</span>
+                </label>
+              </div>
+              <!-- <button id="setDistrict" class="btn btn-accent rounded-s-none border-s-0 mt-1" type="submit">set</button> -->
+            </div>
+          </fieldset>
+          <fieldset class="border border-gray-300 rounded-lg p-0">
+            <legend class="font-bold text-base px-5 py-1 border rounded-lg capitalize">For Priority & Floor</legend>
+            <!-- Get Priority -->
+            <div class="w-full md:w-60 lg:w-96 mx-auto my-5 flex items-center">
+              <div class="form-control w-full">
+                <label for="Priority" class="label">
+                  <span class="label-text">Select Priority Option</span>
+                </label>
+                <select class="select select-bordered w-full select-accent" name="Priority" id="Priority">
+                  <option disabled selected value="10">10 Days Later</option>
+                  <option value="10">10 Days Later</option>
+                  <option value="15">3 Days Later</option>
+                  <option value="20">Tomorrow</option>
+                </select>
+                <label class="label">
+                  <span class="label-text-alt"></span>
+                  <span class="label-text-alt"><span id="TKForPriority">10</span>TK will be added</span>
+                </label>
+              </div>
+              <!-- <button id="setPriority" class="btn btn-accent rounded-s-none border-s-0 mt-1" type="submit">set</button> -->
+            </div>
+
+            <!-- Get location Height -->
+            <div class="w-full md:w-60 lg:w-96 mx-auto my-5 flex items-center">
+              <div class="form-control w-full">
+                <label for="Height" class="label">
+                  <span class="label-text">Select Destination's Floor</span>
+                </label>
+                <select class="select select-bordered w-full select-accent" name="Height" id="Height">
+                  <option disabled selected value="0">Ground Floor</option>
+                  <option value="0">Ground Floor</option>
+                  <option value="2">First Floor</option>
+                  <option value="2">Second Floor Or Up</option>
+                </select>
+                <label class="label">
+                  <span class="label-text-alt"></span>
+                  <span class="label-text-alt"><span id="TKForHeight">0</span>TK will be added</span>
+                </label>
+              </div>
+              <!-- <button id="setHeight" class="btn btn-accent rounded-s-none border-s-0 mt-1" type="submit">set</button> -->
+            </div>
+          </fieldset>
+
+        </div>
+        <div>
+          <fieldset class="border border-gray-300 rounded-lg p-0">
+            <legend class="font-bold text-base px-5 py-1 border rounded-lg capitalize">For More Information</legend>
+
+            <!-- Get Number of Product/s -->
+            <div class="w-full md:w-60 lg:w-96 mx-auto my-5 flex items-center">
+              <div class="form-control w-full">
+                <label for="NumProducts" class="label">
+                  <span class="label-text">Select Total Number of Products</span>
+                </label>
+                <input type="number" id="NumProducts" value="1"
+                  class="flex-1 px-5 py-3 input input-accent" required />
+              </div>
+              <!-- <button id="setNumProducts" class="btn btn-accent rounded-s-none border-s-0 mt-[36px]"
+            type="submit">set</button> -->
+            </div>
+
+            <!-- Type Of Products -->
+            <div class="w-full md:w-60 lg:w-96 mx-auto my-5 flex items-center">
+              <div class="form-control w-full">
+                <label for="Materials" class="label">
+                  <span class="label-text">Select Type of Product Materials</span>
+                </label>
+                <select class="select select-bordered w-full select-accent" name="Materials" id="Materials">
+                  <option disabled selected value="glass">Glass</option>
+                  <option value="glass">Glass</option>
+                  <option value="wood">Wood</option>
+                  <option value="steel">Steel</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Upload Image -->
+            <div class="w-full md:w-60 lg:w-96 mx-auto my-5 flex items-center">
+              <div class="form-control w-full">
+                <label for="productsImage" class="label">
+                  <span class="label-text">Upload Product's Descriptive Image</span>
+                </label>
+                <input type="file" id="productsImage" name="productsImage"
+                  class="file-input file-input-bordered file-input-accent w-full hover:opacity-80" accept="image/*" />
+                <div id="imageShow" class="border border-accent rounded-lg w-full h-40 my-5 hidden"></div>
+              </div>
+            </div>
+          </fieldset>
+          <!-- <div></div> -->
+          <div id="output" class="mt-10"><span>The Total Price : </span><span>$0</span></div>
+        </div>
+        <button id="Order" class="btn btn-accent hover:text-white mt-1 ml-auto" type="submit">Order</button>
+
+
+      </fieldset>
+    </section>
+  </main>
+  <footer></footer>
+
+  <script src="./js/header.js"></script>
+  <script src="./js/utilities.js"></script>
+  <script src="./js/calculation.js"></script>
+</body>
+
+</html>

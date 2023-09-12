@@ -1,0 +1,7 @@
+body>main>section {
+    background-image: url('../assets/images/dropship-header-1024x465.png');
+    background-attachment: fixed;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
